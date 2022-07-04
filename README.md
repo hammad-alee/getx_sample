@@ -4,10 +4,11 @@
 <div>
   <h1 align="center">Getting Started with Flutter 🚀 </h1>
   <strong>
-    Generated with :heart: by Hammad Ali
+    Generated with :heart: by 
   </strong>
-    <a href="https://github.com/hammad-alee/">Hammad Alee</a>
+    <a href="https://github.com/hammad-alee/">Hammad Ali</a>
 </div>
+<br>
 ### Project Structure
 
 After successful build, your application structure should look like this:
