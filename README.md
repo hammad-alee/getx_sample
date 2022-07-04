@@ -6,7 +6,7 @@
   <strong>
     Generated with :heart: by Hammad Ali
   </strong>
-    <a href="github.com/hammad-alee">Hammad Alee</a>
+    <a href="https://github.com/hammad-alee/">Hammad Alee</a>
 </div>
 ### Project Structure
 
