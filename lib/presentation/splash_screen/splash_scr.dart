@@ -1,8 +1,11 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_sample/network/network_request.dart';
 import 'package:getx_sample/utils/dialog_utils.dart';
+import '../../utils/constants.dart';
 import '../../utils/get_controller.dart';
+import '../../utils/helping_function.dart';
 
 class Splash extends StatelessWidget {
   const Splash({Key? key}) : super(key: key);
@@ -25,6 +28,21 @@ class Splash extends StatelessWidget {
                     child: Text("Success Dialog"), onPressed: () => {
                      DialogUtils.defaultD()
                 }),
+                ElevatedButton(onPressed: ()
+                async {
+                  var jsonData = {
+                    'DocType': 'GetCountSum',
+                    'DocDate': DateTime.now().toString(),
+                    'AppType': Platform.isIOS ? 'IOS' : 'Android',
+                    'UserName': '042784255379',
+                    'Password': '042784255379',
+                    'LastDate': '1970-01-01 00:00:00'
+                  };
+
+                  var req = await Functions.sendJson(jsonData,  'splashcountget');
+                  print(req);
+
+                }, child: Text('Send Request'))
               ],
             )),
         floatingActionButton: FloatingActionButton(
