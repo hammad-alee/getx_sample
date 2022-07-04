@@ -4,8 +4,9 @@
 <div>
   <h1 align="center">Getting Started with Flutter 🚀 </h1>
   <strong>
-    Generated with :heart: by Hammad Ali #hammad-alee
+    Generated with :heart: by Hammad Ali
   </strong>
+    <a href="github.com/hammad-alee">Hammad Alee</a>
 </div>
 ### Project Structure
 
