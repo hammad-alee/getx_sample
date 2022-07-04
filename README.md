@@ -10,6 +10,9 @@
 </div>
 <br>
 ### Project Structure
+<br>
+:- [@username] (https://www.github.com/username)
+
 
 After successful build, your application structure should look like this:
 
