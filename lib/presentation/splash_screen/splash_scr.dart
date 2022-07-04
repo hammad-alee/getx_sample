@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx_sample/network/network_request.dart';
 import 'package:getx_sample/utils/dialog_utils.dart';
 import '../../utils/constants.dart';
 import '../../utils/get_controller.dart';
