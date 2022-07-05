@@ -25,7 +25,7 @@ class Splash extends StatelessWidget {
                 SizedBox.fromSize(size: Size(100, 20)),
                 ElevatedButton(
                     child: Text("Success Dialog"), onPressed: () => {
-                     DialogUtils.defaultD()
+                     DialogUtils.successDialog(context, "Signup Successfully! Login to use App features.")
                 }),
                 ElevatedButton(onPressed: ()
                 async {
@@ -49,9 +49,16 @@ class Splash extends StatelessWidget {
   }
 }
 
-class Other extends StatelessWidget {
+class Other extends StatelessWidget with WidgetsBindingObserver {
   // You can ask Get to find a Controller that is being used by another page and redirect you to it.
   final Controller c = Get.find();
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    print(state);
+    if (state == AppLifecycleState.resumed) {
+      print('abc');
+    }
+  }
 
   @override
   Widget build(context) {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_sample/utils/color_constant.dart';
 import 'package:lottie/lottie.dart';
 
 class DialogUtils {
@@ -42,11 +43,17 @@ class DialogUtils {
   }
 
   // success dialog method
-  static void successDialog({description}) {
-    Get.dialog(Material(
-
-      child: Container(
-
+  static void successDialog(context, description) {
+    AlertDialog alert = const AlertDialog();
+    alert = AlertDialog(
+      insetPadding: const EdgeInsets.all(0.0),
+      titlePadding: const EdgeInsets.all(0.0),
+      contentPadding: const EdgeInsets.all(0.0),
+      backgroundColor: Colors.transparent,
+      content: Container(
+        width: MediaQuery.of(context).size.width - 40 > 400
+            ? 500
+            : MediaQuery.of(context).size.width - 30,
         height: 280,
         //color: Colors.white,
         decoration: const BoxDecoration(
@@ -63,7 +70,7 @@ class DialogUtils {
                   borderRadius: BorderRadius.only(
                       topRight: Radius.circular(20),
                       topLeft: Radius.circular(20))),
-              //width: MediaQuery.of(context).size.width,
+              width: MediaQuery.of(context).size.width,
               child: Center(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -76,23 +83,27 @@ class DialogUtils {
               ),
             ),
             Text(
-              'Success!!!',
-              // style: GoogleFonts.notoSans(
-              //   fontSize: 18,
-              //   fontWeight: FontWeight.bold,
-              //   color: textPrimaryColor,
-              // ),
+              'Success!',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: ColorConstant.black9007f,
+              ),
             ),
-            Text(
-              description,
-              maxLines: 4,
-              textAlign: TextAlign.center,
-              overflow: TextOverflow.ellipsis,
-              // style: GoogleFonts.notoSans(
-              //   fontSize: 14,
-              //   fontWeight: FontWeight.normal,
-              //   color: textPrimaryColor,
-              // ),
+            FittedBox(
+              fit: BoxFit.contain,
+              alignment: Alignment.center,
+              child: Text(
+                description,
+                maxLines: 4,
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.normal,
+                  color: ColorConstant.black900,
+                ),
+              ),
             ),
             Align(
               alignment: Alignment.center,
@@ -100,20 +111,20 @@ class DialogUtils {
                 padding: const EdgeInsets.only(bottom: 10),
                 child: MaterialButton(
                   onPressed: () {
-                    Get.back();
+                    Navigator.pop(context);
                   },
                   color: Colors.green,
                   height: 45,
                   minWidth: 150,
                   elevation: 6,
-                  splashColor: Colors.red,
+                  splashColor: ColorConstant.secondary,
                   textColor: Colors.white,
                   shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(30))),
                   child: Text(
                     "OK",
-                    // style: GoogleFonts.notoSans(
-                    //     fontSize: 15, fontWeight: FontWeight.w800),
+                    style: TextStyle(
+                        fontSize: 15, fontWeight: FontWeight.w800),
                   ),
                 ),
               ),
@@ -121,106 +132,194 @@ class DialogUtils {
           ],
         ),
       ),
-    ));
-  }
-
-  static void defaultD(){
-    Get.defaultDialog(
-         title: "Welcome to Flutter Dev'S",
-        // middleText: "FlutterDevs is a protruding flutter app development company with "
-        //     "an extensive in-house team of 30+ seasoned professionals who know "
-        //     "exactly what you need to strengthen your business across various dimensions",
-        // actions: [
-        //   ElevatedButton(onPressed: (){}, child: Text('1')),
-        //   ElevatedButton(onPressed: (){}, child: Text('2')),
-        // ],
-        // buttonColor: Colors.red,
-        // cancel: ElevatedButton(onPressed: (){}, child: Icon(Icons.cancel)),
-        // confirm: ElevatedButton(onPressed: (){}, child: Icon(Icons.tiktok)),
-        content: Container(
-
-          height: 280,
-          //color: Colors.white,
-          decoration: const BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.all(Radius.circular(20))),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                height: 120,
-                decoration: const BoxDecoration(
-                    color: Color(0xff515c6f),
-                    borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(20),
-                        topLeft: Radius.circular(20))),
-                //width: MediaQuery.of(context).size.width,
-                child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Lottie.asset(
-                      'assets/anim/success.json',
-                      width: 150,
-                      height: 150,
-                    ),
-                  ),
-                ),
-              ),
-              Text(
-                'Success!!!',
-                // style: GoogleFonts.notoSans(
-                //   fontSize: 18,
-                //   fontWeight: FontWeight.bold,
-                //   color: textPrimaryColor,
-                // ),
-              ),
-              Text(
-                'description',
-                maxLines: 4,
-                textAlign: TextAlign.center,
-                overflow: TextOverflow.ellipsis,
-                // style: GoogleFonts.notoSans(
-                //   fontSize: 14,
-                //   fontWeight: FontWeight.normal,
-                //   color: textPrimaryColor,
-                // ),
-              ),
-              Align(
-                alignment: Alignment.center,
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 10),
-                  child: MaterialButton(
-                    onPressed: () {
-                      Get.back();
-                    },
-                    color: Colors.green,
-                    height: 45,
-                    minWidth: 150,
-                    elevation: 6,
-                    splashColor: Colors.red,
-                    textColor: Colors.white,
-                    shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(30))),
-                    child: Text(
-                      "OK",
-                      // style: GoogleFonts.notoSans(
-                      //     fontSize: 15, fontWeight: FontWeight.w800),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      contentPadding: EdgeInsets.zero,
-      // custom: ElevatedButton(onPressed: (){}, child: Icon(Icons.facebook)),
-      //   textConfirm: 'abc',
-      //   backgroundColor: Colors.teal,
-      //   titleStyle: TextStyle(color: Colors.white),
-      //   middleTextStyle: TextStyle(color: Colors.white),
-        radius: 20,
-
+    );
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (BuildContext context) => alert,
     );
   }
+
+  static void errorDialog(context, description) {
+    AlertDialog alert = const AlertDialog();
+    alert = AlertDialog(
+      backgroundColor: Colors.transparent,
+      insetPadding: const EdgeInsets.all(0.0),
+      titlePadding: const EdgeInsets.all(0.0),
+      contentPadding: const EdgeInsets.all(0.0),
+      content: Container(
+        width: MediaQuery.of(context).size.width - 40 > 400
+            ? 500
+            : MediaQuery.of(context).size.width - 30,
+        height: 280,
+        //color: Colors.red,
+        decoration: const BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.all(Radius.circular(20))),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              height: 120,
+              decoration: const BoxDecoration(
+                  color: Color(0xff515c6f),
+                  borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(20),
+                      topLeft: Radius.circular(20))),
+              width: MediaQuery.of(context).size.width,
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Lottie.asset(
+                    'assets/lottie_files/dialog_error.json',
+                    width: 150,
+                    height: 150,
+                  ),
+                ),
+              ),
+            ),
+            Text(
+              'Oops...',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: ColorConstant.text1,
+              ),
+            ),
+            Text(
+              description,
+              maxLines: 3,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.normal,
+                color: ColorConstant.text1,
+              ),
+            ),
+            Align(
+              alignment: Alignment.center,
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 10),
+                child: MaterialButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  color: Colors.red,
+                  height: 45,
+                  minWidth: 150,
+                  elevation: 6,
+                  splashColor: ColorConstant.secondary,
+                  textColor: Colors.white,
+                  shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(30))),
+                  child: Text(
+                    "OK",
+                    style: TextStyle(
+                        fontSize: 15, fontWeight: FontWeight.w800),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (BuildContext context) => alert,
+    );
+  }
+
+  static void infoDialog(context, desc) {
+    showDialog(
+        builder: (context) => AlertDialog(
+          insetPadding: const EdgeInsets.all(0.0),
+          titlePadding: const EdgeInsets.all(0.0),
+          contentPadding: const EdgeInsets.all(0.0),
+          backgroundColor: Colors.transparent,
+          content: Container(
+            width: MediaQuery.of(context).size.width - 40 > 400
+                ? 500
+                : MediaQuery.of(context).size.width - 30,
+            height: 280,
+            //color: Colors.white,
+            decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(Radius.circular(20))),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  height: 120,
+                  decoration: const BoxDecoration(
+                      color: Color(0xff515c6f),
+                      borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(20),
+                          topLeft: Radius.circular(20))),
+                  width: MediaQuery.of(context).size.width,
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Lottie.asset(
+                        'assets/lottie_files/info.json',
+                        width: 150,
+                        height: 150,
+                      ),
+                    ),
+                  ),
+                ),
+                Text(
+                  'Info!',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: ColorConstant.text1,
+                  ),
+                ),
+                Text(
+                  desc,
+                  maxLines: 4,
+                  textAlign: TextAlign.center,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.normal,
+                    color: ColorConstant.text1,
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.center,
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 10),
+                    child: MaterialButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      color: const Color(0xffF19734),
+                      height: 45,
+                      minWidth: 150,
+                      elevation: 6,
+                      splashColor: ColorConstant.secondary,
+                      textColor: Colors.white,
+                      shape: const RoundedRectangleBorder(
+                          borderRadius:
+                          BorderRadius.all(Radius.circular(30))),
+                      child: Text(
+                        "OK",
+                        style: TextStyle(
+                            fontSize: 15, fontWeight: FontWeight.w800),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        context: context);
+  }
+
 }

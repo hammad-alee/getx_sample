@@ -1,17 +1,22 @@
 import 'dart:convert';
-
+import 'dart:io';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:getx_sample/utils/constants.dart';
 import 'package:http/http.dart' as http;
-class Functions{
+import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
+
+class Functions {
+
   static sendJson(jsonMap, page) async {
     var jsonData;
     var response;
     var isSuccess = false;
     var jsonError = {
-      'DocType'   : 'Error',
-      'DocDate'   : DateTime.now().toString(),
-      'Message'   : 'Check Internet Connection & try again - Server Error!'
+      'DocType': 'Error',
+      'DocDate': DateTime.now().toString(),
+      'Message': 'Check Internet Connection & try again - Server Error!'
     };
     try {
       response = await http.post(
@@ -25,10 +30,10 @@ class Functions{
         //print(response.body);
       }
       if (response.statusCode == 200) {
-        try{
+        try {
           jsonData = json.decode(response.body);
           isSuccess = true;
-        } on FormatException catch(e){
+        } on FormatException catch (e) {
           isSuccess = false;
           return jsonError;
         }
@@ -42,16 +47,56 @@ class Functions{
       }
       isSuccess = false;
       return jsonError;
-    }
-    finally{
-      if(isSuccess == false){
+    } finally {
+      if (isSuccess == false) {
         return jsonError;
-      }
-      else
-      {
+      } else {
         return jsonData;
       }
     }
+  }
+
+  static bool isMobile(String number) {
+    return RegExp(r'^04([0-9]{8})$').hasMatch(number);
+  }
+
+  static bool isEmail(String email) {
+    return RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(email);
+  }
+
+  static bool validatePassword(String value) {
+    return RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$')
+        .hasMatch(value);
+  }
+
+  static Future<bool> isConnected() async {
+    var result = await Connectivity().checkConnectivity();
+    if (result == ConnectivityResult.none) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  static Future<File?> pickMedia({
+    required bool isGallery,
+    required Future<File?> Function(File file) cropImage,
+  }) async {
+    final source = isGallery ? ImageSource.gallery : ImageSource.camera;
+    final pickedFile = await ImagePicker().pickImage(source: source);
+
+    if (pickedFile == null) return null;
+
+    if (cropImage == null) {
+      return File(pickedFile.path);
+    } else {
+      final file = File(pickedFile.path);
+      return cropImage(file);
+    }
+  }
+
+  static String formatDate({String pattern = 'dd-MMM-yyyy hh:mm:ss a', required String date}) {
+    return DateFormat().format(DateTime.parse(date));
   }
 
 }
