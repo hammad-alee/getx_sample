@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       translations: AppLocalization(),
       locale: Get.deviceLocale,
-      fallbackLocale: Locale('en', 'US'),
+      fallbackLocale: const Locale('en', 'US'),
       title: 'GetX Sample',
       initialBinding: InitialBindings(),
       initialRoute: AppRoutes.initialRoute,

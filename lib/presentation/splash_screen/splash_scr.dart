@@ -66,13 +66,8 @@ class Other extends StatelessWidget with WidgetsBindingObserver {
       appBar: AppBar(),
       body: Column(
         children: [
-          Text("${c.count}"),
-          MaterialButton(
-            child: Text('Show Dialog'.tr),
-              onPressed: (){
-           DialogUtils.showProgressDialog(isCancellable: true);
-
-          })
+          Functions.loadImage(height: 200, url: "https://images.pexels.com/photos/66997/pexels-photo-66997.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"),
+          
         ],
       ),
     );
