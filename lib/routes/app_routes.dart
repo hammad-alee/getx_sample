@@ -1,9 +1,12 @@
 import 'package:get/get.dart';
+import 'package:getx_sample/presentation/login/login_scr.dart';
 import 'package:getx_sample/presentation/splash_screen/binding/splash_binding.dart';
 import 'package:getx_sample/presentation/splash_screen/splash_scr.dart';
 
+import '../presentation/login/binding/login_binding.dart';
+
 class AppRoutes {
-  static String homepageScreen = '/homepage_screen';
+  static String login = '/homepage_screen';
 
   static String userProfileScreen = '/user_profile_screen';
 
@@ -19,6 +22,13 @@ class AppRoutes {
       page: () => Splash(),
       bindings: [
         SplashBinding(),
+      ],
+    ),
+    GetPage(
+      name: login,
+      page: () => Login(),
+      bindings: [
+        LoginBinding(),
       ],
     ),
 

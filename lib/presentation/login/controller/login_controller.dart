@@ -1,8 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:getx_sample/presentation/splash_screen/splash_scr.dart';
-class SplashController extends GetxController {
-  Rx<Splash> homepageModelObj = Splash().obs;
+
+import '../login_scr.dart';
+class LoginController extends GetxController {
+  Rx<Login> homepageModelObj = Login().obs;
 
   @override
   void onReady() {
