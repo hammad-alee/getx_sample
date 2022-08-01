@@ -1,16 +1,15 @@
 import 'dart:convert';
 import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:getx_sample/utils/assets_const.dart';
 import 'package:getx_sample/utils/color_constant.dart';
 import 'package:getx_sample/utils/constants.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
-import 'package:lottie/lottie.dart';
 
 class Functions {
 

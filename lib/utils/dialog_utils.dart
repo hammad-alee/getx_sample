@@ -172,7 +172,7 @@ class DialogUtils {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Lottie.asset(
-                    'assets/lottie_files/dialog_error.json',
+                    'assets/anim/error.json',
                     width: 150,
                     height: 150,
                   ),

@@ -1,8 +1,12 @@
+import 'dart:async';
 import 'package:flutter/foundation.dart';
-import 'package:get/get.dart';
+import 'package:get/get_rx/src/rx_types/rx_types.dart';
+import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:get/route_manager.dart';
+import 'package:getx_sample/presentation/login/login_scr.dart';
 import 'package:getx_sample/presentation/splash_screen/splash_scr.dart';
 class SplashController extends GetxController {
-  Rx<Splash> homepageModelObj = Splash().obs;
+  Rx<Splash> homepageModelObj = const Splash().obs;
 
   @override
   void onReady() {
@@ -16,9 +20,11 @@ class SplashController extends GetxController {
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-    //if (kDebugMode) {
-      print('onInit -->');
-    //}
+    Timer(const Duration(seconds: 6), ()
+          {
+            print('Navigate to Login');
+            Get.off(()=> const Login());
+          });
   }
 
     @override
