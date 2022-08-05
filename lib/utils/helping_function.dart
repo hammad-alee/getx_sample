@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:image_cropper/image_cropper.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/foundation.dart';
@@ -10,6 +11,8 @@ import 'package:getx_sample/utils/constants.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+
+import '../presentation/signup/signup_util/signup_controller.dart';
 
 class Functions {
 
@@ -82,20 +85,39 @@ class Functions {
     }
   }
 
-  static Future<File?> pickMedia({
+  static Future<Object?> pickMedia({
     required bool isGallery,
-    required Future<File?> Function(File file) cropImage,
   }) async {
+    File imageFile;
+    Future<CroppedFile?> croppedFile =
+    ImageCropper().cropImage(
+      sourcePath: imageFile.path,
+      aspectRatio: const CropAspectRatio(ratioX: 1, ratioY: 1),
+      aspectRatioPresets: [CropAspectRatioPreset.square],
+      compressQuality: 10,
+      compressFormat: ImageCompressFormat.jpg,
+      uiSettings: [
+        AndroidUiSettings(
+          toolbarTitle: 'Crop Image',
+          toolbarColor: ColorConstant.secondary,
+          toolbarWidgetColor: Colors.white,
+          hideBottomControls: true,
+        ),
+        IOSUiSettings(
+          rotateClockwiseButtonHidden: false,
+          rotateButtonsHidden: false,
+        ),
+      ],
+    );
     final source = isGallery ? ImageSource.gallery : ImageSource.camera;
     final pickedFile = await ImagePicker().pickImage(source: source);
 
     if (pickedFile == null) return null;
 
-    if (cropImage == null) {
+    if (croppedFile == null) {
       return File(pickedFile.path);
     } else {
-      final file = File(pickedFile.path);
-      return cropImage(file);
+      return croppedFile;
     }
   }
 

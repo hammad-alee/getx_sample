@@ -30,13 +30,13 @@ class AppRoutes {
         LoginBinding(),
       ],
     ),
-    // GetPage(
-    //   name: signup,
-    //   page: () => const Signup(),
-    //   bindings: [
-    //     SignupBinding(),
-    //   ],
-    // ),
+    GetPage(
+      name: signup,
+      page: () => const Signup(),
+      bindings: [
+        SignupBinding(),
+      ],
+    ),
 
   ];
 }

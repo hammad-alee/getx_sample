@@ -5,11 +5,11 @@ import '../../signup/signup.dart';
 import '../login_scr.dart';
 
 class LoginController extends GetxController {
-  Rx<Login> homepageModelObj = Login().obs;
+  Rx<Login> homepageModelObj = const Login().obs;
   RxBool obscureText = true.obs;
 
   void navigateSignup() {
-    Get.to(()=> const Signup());
+    Get.to(()=>  const Signup());
   }
 
   @override

@@ -1,12 +1,16 @@
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_cropper/image_cropper.dart';
 
+import '../../../utils/color_constant.dart';
 import '../signup.dart';
 
 class SignupController extends GetxController
 {
-  Rx<Signup> homepageModelObj = const Signup().obs;
+  Rx<Signup> homepageModelObj =  Signup().obs;
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -20,7 +24,6 @@ class SignupController extends GetxController
     // TODO: implement onClose
     super.onClose();
   }
-  @override
-  // TODO: implement onStart
-  InternalFinalCallback<void> get onStart => super.onStart;
+
+
 }

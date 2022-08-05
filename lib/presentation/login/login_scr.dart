@@ -70,6 +70,7 @@ class Login extends StatelessWidget {
                         TextFormField(
                           controller: emailController,
                           autocorrect: false,
+                          textInputAction: TextInputAction.next,
                           showCursor: true,
                           cursorColor: ColorConstant.secondary,
                           keyboardType: TextInputType.emailAddress,
@@ -114,6 +115,7 @@ class Login extends StatelessWidget {
                           autocorrect: false,
                           showCursor: true,
                           cursorColor: ColorConstant.secondary,
+                          textInputAction: TextInputAction.done,
                           keyboardType: TextInputType.emailAddress,
                           obscureText: loginController.obscureText.value,
                           obscuringCharacter: '●',
@@ -193,13 +195,14 @@ class Login extends StatelessWidget {
                   onTap: () async {
                     try {
                       DialogUtils.showProgressDialog();
-                      final response = await FirebaseAuth.instance
+                      UserCredential response = await FirebaseAuth.instance
                           .signInWithEmailAndPassword(
                           email: emailController.text,
-                          password: emailController.text);
+                          password: passwordController.text);
                       print(response);
                       DialogUtils.hideProgressDialog();
                     } on FirebaseAuthException catch (e) {
+                      print("-> ${e.code}");
                       DialogUtils.hideProgressDialog();
                       if (e.code == 'user-not-found') {
                         DialogUtils.errorDialog(
